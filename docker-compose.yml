@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  node_alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - OWNER=$OWNER
+        - NAME=$NAME
+        - DESCRIPTION=$DESCRIPTION
+        - ADAPTER=$ADAPTER
+    container_name: "node_alpine"
+    env_file:
+      - .env
+    ports:
+      - 6379:6379
+    volumes:
+      - "./src:/source:rw"
+    tty: true
